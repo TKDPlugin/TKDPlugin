@@ -1,28 +1,30 @@
 package bl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
 import data.DataController;
-import data.util.ListMaker;
-import data.util.SQLBuilder;
+import data.util.DataBaseLancher;
 
 public class BlController {
-    private static BlController controller;
-    private DataController dataController;
-  //  ArrayList<Level> levelList;
-    private BlController() {
-        dataController = DataController.getInstance();
-    }
-    
-    public static BlController getInstance() {
-        if(controller!=null) {
-            controller = new BlController();
-        }
-        return controller;
-    }
-    
+	private static BlController controller;
+	private DataController dataController;
+
+	// ArrayList<Level> levelList;
+	private BlController() {
+		dataController = DataController.getInstance();
+	}
+
+	public static BlController getInstance() {
+
+		if (!DataBaseLancher.isLanched()) {
+			DataBaseLancher.lanch();
+		}
+
+		if (controller == null) {
+			controller = new BlController();
+		}
+		return controller;
+	}
+
 	public ArrayList<Level> getSelectedLevels() {
 		return dataController.getSelectedLevels();
 	}
@@ -35,5 +37,4 @@ public class BlController {
 		return dataController.isAllFinish();
 	}
 
-    
 }

@@ -18,8 +18,6 @@ public class DataTest {
 		datacontroller = DataController.getInstance();
 	}
 
-
-
 	@Test
 	public void testGetSelectedLevels() {
 		ArrayList<Level> levels = datacontroller.getSelectedLevels();

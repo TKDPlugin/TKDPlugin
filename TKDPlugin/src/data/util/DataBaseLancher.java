@@ -14,6 +14,7 @@ import java.util.Properties;
  */
 public class DataBaseLancher {
 	// 启动数据库，返回数据库引用
+	private static boolean isLanched = false;
 	public static Excutor lanch() {
 		Config.config();
 		Properties prop = new Properties();    //只要添加这几句话就可以  
@@ -32,7 +33,12 @@ public class DataBaseLancher {
 			e.printStackTrace();
 		}
 		Excutor ex = Excutor.getInstance();
-		
+		isLanched = true;
 		return ex;
 	}
+	
+	public static boolean isLanched(){
+		return isLanched;
+	}
+	
 }
