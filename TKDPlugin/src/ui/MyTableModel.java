@@ -25,17 +25,18 @@ public class MyTableModel extends AbstractTableModel {
 	   private Vector<String> title=null;
 	   private Vector<Vector<String>> data=null;
 	   
-		public  MyTableModel(){
+		public  MyTableModel(ArrayList<Athlete> athleteList){
 			   super();
-			   this.init ();
+			   this.init ( athleteList);
 		}
 		
-		public void init(){
+		public void init(ArrayList<Athlete> athleteList){
 			  title = new Vector<String>();
 			  data = new Vector<Vector<String>>();
 			  title.add("名次");
 			  title.add("姓名");
 			  title.add("队伍");
+			  this.setData(athleteList);
 		}
 	
 		
