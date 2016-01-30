@@ -51,8 +51,9 @@ public class Level implements Comparable<Level>{
     }
     
     public String toString() {
-        String result = gender.toChinese()+"子";
-        return result+kgLevel.toString();
+        //String result = gender.toChinese()+"子";
+        //return result+kgLevel.toString();
+    	return levelName;
     }
 
     @Override
