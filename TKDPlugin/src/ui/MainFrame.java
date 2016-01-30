@@ -2,8 +2,14 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
     /**
@@ -12,11 +18,11 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static int Width=800;
 	private static int Height=600;
-
+           
+	        Font font ;
 			public   MainFrame(){
 				this.initComponent();
-            	MainPanel  mainPanel = new MainPanel();
-            	this.getContentPane().add(mainPanel);
+            	
              }
 			
 			
@@ -26,9 +32,41 @@ public class MainFrame extends JFrame {
          		setResizable(false);
          		setFont(new Font("Calibri", Font.PLAIN, 14));
          		setBackground(Color.WHITE);
-         		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
+            	initBar();
+            	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          		setBounds(100, 100, Width		, Height);
          		setVisible(true);
 			}
 			
+			
+			public void initBar(){
+	        	   font  = new Font("Microsoft YaHei UI Light", Font.PLAIN, 14);
+	        	   
+	        		JMenuBar menuBar = new JMenuBar();
+	        		menuBar.setBackground(Color.LIGHT_GRAY);
+	        		menuBar.setBorderPainted(false);
+	        		menuBar.setFont(font);
+	        		setJMenuBar(menuBar);
+	        		
+	        		JMenu menu = new JMenu("功能选项");
+	        		menu.setFont(font);
+	        		menu.setHorizontalAlignment(SwingConstants.CENTER);
+	        		menuBar.add(menu);
+	        		
+	        		JMenuItem rankItem = new JMenuItem("排名");
+	        		rankItem.addActionListener(new ActionListener() {
+	        			public void actionPerformed(ActionEvent arg0) {
+	        				
+	        			}
+	        		});
+	        		rankItem.setFont(font);
+	        		rankItem.setHorizontalAlignment(SwingConstants.CENTER);
+	        		menu.add(rankItem);
+	        		
+	        		JMenuItem sumItem = new JMenuItem("汇总");
+	        		sumItem.setFont(font);
+	        		sumItem.setHorizontalAlignment(SwingConstants.CENTER);
+	        		menu.add(sumItem);
+	           }
  }
