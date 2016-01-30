@@ -1,13 +1,13 @@
 package bl;
 
-public class Althete implements Comparable<Althete>{
+public class Athlete implements Comparable<Athlete>{
     private String name;
     private int rank;
     private String team;
     private String levelName;
     
 
-    public int compareTo(Althete o) {
+    public int compareTo(Athlete o) {
         return Integer.compare(rank, o.rank);
     }
 

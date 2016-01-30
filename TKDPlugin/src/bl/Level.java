@@ -6,12 +6,12 @@ import java.util.Collections;
 import javax.naming.spi.DirStateFactory.Result;
 
 public class Level implements Comparable<Level>{
-    private ArrayList<Althete> altheteList;
+    private ArrayList<Athlete> altheteList;
     private String levelName;
     private Gender gender;
     private KGLevel kgLevel;
   
-    public Level(String levelName,ArrayList<Althete> list) {
+    public Level(String levelName,ArrayList<Athlete> list) {
         this.levelName = levelName;
         LevelStringAnalyze.analyzeLevel(this);
         altheteList = new ArrayList<>(list);
@@ -24,13 +24,13 @@ public class Level implements Comparable<Level>{
 
 
 
-    public ArrayList<Althete> getAltheteList() {
+    public ArrayList<Athlete> getAltheteList() {
         return altheteList;
     }
 
 
 
-    public void setAltheteList(ArrayList<Althete> altheteList) {
+    public void setAltheteList(ArrayList<Athlete> altheteList) {
         this.altheteList = altheteList;
     }
 
