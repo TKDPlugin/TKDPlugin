@@ -47,6 +47,9 @@ public class ObjToString {
 				if (object.getClass() == String.class || object.getClass() == StringBuilder.class) {
 					return object.toString();
 				}
+				if(object.getClass().isEnum()){
+					return object.toString();
+				}
 			}
 
 			// 确定不是基本类型，再确定是不是集合

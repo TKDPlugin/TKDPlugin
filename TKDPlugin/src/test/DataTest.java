@@ -25,6 +25,13 @@ public class DataTest {
 		ArrayList<Level> levels = datacontroller.getSelectedLevels();
 		System.out.println(ObjToString.toString(levels));
 	}
+	
+	@Test
+	public void getLevel(){
+		String levelName = "男甲45kg";
+		Level level = datacontroller.getALevel(levelName);
+		System.out.println(ObjToString.toString(level));
+	}
 
 	@Test
 	public void testIsAllFinish() {

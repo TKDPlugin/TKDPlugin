@@ -57,9 +57,9 @@ public class DataController {
 		return levels;
 	}
 
-	private Level getALevel(String levelName) {
+	public Level getALevel(String levelName) {
 		SQLBuilder builder = new SQLBuilder();
-		builder.Select("*").From(altTableName).Where("AthTeam")
+		builder.Select("*").From(altTableName).Where("AthClass")
 		.EQUALS(levelName).AND("LastPlace > 0");
 
 		ListMaker<Althete> altheteMaker = new ListMaker<Althete>() {
