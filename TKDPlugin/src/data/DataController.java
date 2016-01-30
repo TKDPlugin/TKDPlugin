@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import bl.Althete;
+import bl.Athlete;
 import bl.Level;
 import data.util.DataBaseLancher;
 import data.util.ListMaker;
@@ -62,14 +62,14 @@ public class DataController {
 		builder.Select("*").From(altTableName).Where("AthClass")
 		.EQUALS(levelName).AND("LastPlace > 0");
 
-		ListMaker<Althete> altheteMaker = new ListMaker<Althete>() {
+		ListMaker<Athlete> altheteMaker = new ListMaker<Athlete>() {
 			@Override
-			public Althete getPO(ResultSet set) {
+			public Athlete getPO(ResultSet set) {
 				try {
 					String name = set.getString("AthName");
 					int rank = set.getInt("LastPlace");
 					String team = set.getString("AthTeam");
-					Althete althete = new Althete();
+					Athlete althete = new Athlete();
 					althete.setLevelName(levelName);
 					althete.setName(name);
 					althete.setRank(rank);
@@ -84,7 +84,7 @@ public class DataController {
 
 		};
 
-		ArrayList<Althete> althetes = altheteMaker.getList(builder);
+		ArrayList<Athlete> althetes = altheteMaker.getList(builder);
 		Level level = new Level(levelName, althetes);
 		return level;
 	}

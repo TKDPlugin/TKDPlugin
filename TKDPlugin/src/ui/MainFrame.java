@@ -1,7 +1,9 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,8 +18,8 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int Width=800;
-	private static int Height=600;
+	private static int Width=400;
+	private static int Height=300;
            
 	        Font font ;
 			public   MainFrame(){
@@ -34,8 +36,12 @@ public class MainFrame extends JFrame {
          		setBackground(Color.WHITE);
        
             	initBar();
+            	
             	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         		setBounds(100, 100, Width		, Height);
+            	Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+         		int screenW = (int)screensize.getWidth();
+         		int screenH= (int)screensize.getHeight();
+         		setBounds((screenW-Width)/2, (screenH-Height)/2, Width	, Height);
          		setVisible(true);
 			}
 			
