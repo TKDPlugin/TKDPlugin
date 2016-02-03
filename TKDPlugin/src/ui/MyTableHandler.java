@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 public class MyTableHandler {
-	private static int  rowH = 35;
-	private static int showH=400;
-	private static int showW=400;
+	private static int  rowH = 20;
+	private static int showH=360;
+	private static int showW=210;
 	private static Font font = new Font("微软雅黑", Font.PLAIN, 20);
 	
 	public static void decorateTableAndSpane(JTable table ,JScrollPane spane){

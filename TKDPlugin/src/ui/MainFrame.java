@@ -3,6 +3,7 @@ package ui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class MainFrame extends JFrame {
@@ -18,17 +20,20 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int Width=400;
-	private static int Height=300;
+	public static int Width=450;
+	public static int Height=350;
            
-	        Font font ;
+	      private  Font font ;
+	      private   JPanel showPanel;
 			public   MainFrame(){
+				
 				this.initComponent();
             	
              }
 			
 			
 			public void initComponent(){
+				setLayout(null);
 				setType(Type.UTILITY);
          		setTitle("Tool");
          		setResizable(false);
@@ -36,6 +41,7 @@ public class MainFrame extends JFrame {
          		setBackground(Color.WHITE);
        
             	initBar();
+            	initShowPanel();
             	
             	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             	Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
@@ -46,7 +52,15 @@ public class MainFrame extends JFrame {
 			}
 			
 			
-			public void initBar(){
+			private void initShowPanel(){
+				showPanel = new JPanel();
+				showPanel.setLayout(null);
+            	showPanel.setBounds(0, 0, Width, Height);
+            	showPanel.setOpaque(false);
+            	this.add(showPanel);
+			}
+			
+			private void initBar(){
 	        	   font  = new Font("Microsoft YaHei UI Light", Font.PLAIN, 14);
 	        	   
 	        		JMenuBar menuBar = new JMenuBar();
@@ -61,18 +75,30 @@ public class MainFrame extends JFrame {
 	        		menuBar.add(menu);
 	        		
 	        		JMenuItem rankItem = new JMenuItem("排名");
-	        		rankItem.addActionListener(new ActionListener() {
-	        			public void actionPerformed(ActionEvent arg0) {
-	        				
-	        			}
-	        		});
 	        		rankItem.setFont(font);
 	        		rankItem.setHorizontalAlignment(SwingConstants.CENTER);
+	        		rankItem.addActionListener(new ActionListener() {
+	        			public void actionPerformed(ActionEvent arg0) {
+	        				//显示排名面板
+	        				  UIController.changePanel("rank");
+	        			}
+	        		});
 	        		menu.add(rankItem);
 	        		
 	        		JMenuItem sumItem = new JMenuItem("汇总");
 	        		sumItem.setFont(font);
 	        		sumItem.setHorizontalAlignment(SwingConstants.CENTER);
+	        		sumItem.addActionListener(new ActionListener() {
+	        			public void actionPerformed(ActionEvent arg0) {
+	        				//显示汇总面板
+	        				  UIController.changePanel("sum");
+	        			}
+	        		});
 	        		menu.add(sumItem);
 	           }
+			
+			
+			public JPanel getShowPanel(){
+				return this.showPanel;
+			}
  }
