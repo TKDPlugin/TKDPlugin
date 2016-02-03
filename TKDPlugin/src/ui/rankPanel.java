@@ -1,6 +1,8 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,15 +23,16 @@ import bl.Level;
  * @author 侍硕
  *
  */
-public class rankPanel extends JPanel {
+public class RankPanel extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private static int LBW=60;
-	private static int LBH=35;
-	
+	private static int LBH=30;
+	private static int showW=360;
+	private static int showH=210;
 	
 	private BlController controller;
 	//进行中的级别列表
@@ -43,19 +46,22 @@ public class rankPanel extends JPanel {
     private JScrollPane Spane;
     private JButton exportBT;
     
-	public rankPanel(BlController controller){
-		    super();
-		    this.setLayout(null);
-		    this.controller  =controller;
-		    this.levelList = this.controller.getSelectedLevels();
+	public RankPanel(BlController controller){
+	
+		     this.setLayout(null);
+		     this.controller  =controller;
+		     this.levelList = this.controller.getSelectedLevels();
+		     initComponent();
 	}
+	
+
 	
    public void initComponent(){
 	     
 	     this.font = new Font("Microsoft YaHei UI", Font.PLAIN, 14);
 	     this.levelLB = new JLabel("级别");
 	     levelLB.setFont(font);
-	     levelLB.setBounds(50,20,LBW,LBH);
+	     levelLB.setBounds(120,0,LBW,LBH);
 	     initComboBox();
 	     initTable();
 	     this.exportBT = new JButton("导出");
@@ -74,7 +80,7 @@ public class rankPanel extends JPanel {
 	     }
 	     
 	     levelBox = new JComboBox<String>(levelNames);
-	     levelBox.setBounds(levelLB.getX()+LBW,levelLB.getY(),200,LBH);
+	     levelBox.setBounds(levelLB.getX()+LBW,levelLB.getY(),150,LBH);
 	     levelBox.addActionListener(new ActionListener() {
 
 				@Override
@@ -93,6 +99,7 @@ public class rankPanel extends JPanel {
 	   this.table  = new JTable(model);
 	   Spane = new JScrollPane(table);
 	   MyTableHandler.decorateTableAndSpane(table, Spane);
+	   Spane.setBounds(45,50,showW,showH);
    }
    
 }
