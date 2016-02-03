@@ -19,7 +19,6 @@ import bl.Level;
 /**
  * 排名面板
  * @author 侍硕
- *
  */
 public class RankPanel extends JPanel {
 
