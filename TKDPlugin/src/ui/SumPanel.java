@@ -47,8 +47,8 @@ public class SumPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				String path  =   ExportExcelUtil.getPath();
-				excelHandler = new ExcelHandler(path,groups);
-				excelHandler.exportExcel();
+				excelHandler = new ExcelHandler(path);
+				excelHandler.exportSumExcel(groups);
 			}
 			   
 		   });

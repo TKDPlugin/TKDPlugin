@@ -35,6 +35,7 @@ public class RankPanel extends JPanel {
 	private BlController controller;
 	//进行中的级别列表
     private ArrayList<Level>  levelList;
+    private ExcelHandler excelHandler;
     
 	private Font font;
 	private JComboBox<String> levelBox ;
@@ -70,7 +71,8 @@ public class RankPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				 String path  =   ExportExcelUtil.getPath();
-			     ExportExcelUtil.exportExcel(table, path);
+				 excelHandler = new ExcelHandler(path);
+			     excelHandler.exportRankExcel(table);
 			}
 	    	 
 	     });

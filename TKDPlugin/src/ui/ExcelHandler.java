@@ -6,13 +6,15 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+
 import bl.Gender;
 import bl.Group;
 import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.VerticalAlignment;
 import jxl.write.Label;
-import jxl.write.Number;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -20,7 +22,6 @@ import jxl.write.WritableWorkbook;
 
 public class ExcelHandler {
       private OutputStream reportOS;
-      private ArrayList<Group> groups;
     
     //表头的字体格式，字体、大小和样式 
       private final static WritableFont HEADER_FONT_STYLE = new WritableFont(     
@@ -32,7 +33,7 @@ public class ExcelHandler {
     * 构造函数需要导出路径作为参数
     * @param filePath
     */
-      public ExcelHandler(String filePath  , ArrayList<Group>  groups) {      
+      public ExcelHandler(String filePath ) {      
     	  try { 
   
                    File file = new File(filePath); 
@@ -41,25 +42,69 @@ public class ExcelHandler {
                    }              
                  
                     this.reportOS = new FileOutputStream(filePath);   
-                    this.groups = groups;
-                    System.out.println("共有"+groups.size()+"组");
                  
                  } catch (Exception e) {    
                 	 System.out.println("ExcelHandler 启动失败");
                  }  
     	  }
       
-      public void  exportExcel(){
+      public void exportRankExcel(JTable table){
     	  try{
+    		  
+    		  TableModel model = table.getModel();
+    		  
+    		  WritableWorkbook workBook =
+    				  Workbook.createWorkbook(this.reportOS);
+    		
+    		  WritableSheet sheet = workBook.createSheet("跆拳道排名表", 0);
+    		  
+    		  
+    		//创建表头的单元格格式         
+    		  WritableCellFormat headerFormat = new WritableCellFormat(     
+    				  HEADER_FONT_STYLE);         
+    		  //水平方向居中对齐
+    		  headerFormat.setAlignment(Alignment.CENTRE);
+    		  //竖直方向居中对齐           
+    		  headerFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
+    		  for(int i=0;i<model.getColumnCount();i++){
+    			    sheet.addCell(new Label(i,0,model.getColumnName(i),headerFormat));
+    		  }
+    		  
+    		//创建内容的单元格格式         
+    		  WritableCellFormat bodyFormat = new WritableCellFormat(     
+    				  BODY_FONT_STYLE);         
+    		  //水平方向居中对齐
+    		  bodyFormat.setAlignment(Alignment.CENTRE);
+    		  //竖直方向居中对齐           
+    		  bodyFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
+    		  for(int i=0;i<model.getRowCount();i++){
+    			    for(int j=0;j<model.getColumnCount();j++){
+    			    	sheet.addCell(new Label(j,i+1,model.getValueAt(i, j).toString(),bodyFormat));
+    			    }
+    		  }
+
+    	      workBook.write();
+    	      workBook.close();
+    	      reportOS.close();
+    	  
+    	  }catch (Exception e){
+    		  e.printStackTrace();
+    	  }
+      }
+      
+      
+      public void  exportSumExcel( ArrayList<Group>  groups){
+    	  
+    	  try{
+    		  System.out.println("共有"+groups.size()+"组");
+    		  
     		  WritableWorkbook workBook =
     				  Workbook.createWorkbook(this.reportOS);
     		
     		  WritableSheet sheet = workBook.createSheet("跆拳道汇总表1", 0);
-    		  
-    	
-    		  
+
     	      this.writeHeader(sheet);
-    	      this.writeBody(sheet);
+    	      this.writeBody(sheet,groups);
     	      
     	      workBook.write();
     	      workBook.close();
@@ -141,9 +186,9 @@ public class ExcelHandler {
       
       
       
-      private void writeBody(WritableSheet sheet){
+      private void writeBody(WritableSheet sheet,ArrayList<Group>  groups){
     	  try{
-    		//创建表头的单元格格式         
+    		//创建内容的单元格格式         
     		  WritableCellFormat bodyFormat = new WritableCellFormat(     
     				  BODY_FONT_STYLE);         
     		  //水平方向居中对齐
@@ -152,32 +197,32 @@ public class ExcelHandler {
     		  bodyFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
     		  
     		//组名的起始行数
-    		  int [] Index_GroupNames = new int [this.groups.size()];
+    		  int [] Index_GroupNames = new int [groups.size()];
     		  
-    		  for(int i=0;i<this.groups.size();i++){
+    		  for(int i=0;i<groups.size();i++){
     			    if(i==0){
     			    	Index_GroupNames[i]=2;
     			    }else{
-    			    	Index_GroupNames[i]=Index_GroupNames[i-1]+this.groups.get(i-1).getLevelNum(null);
+    			    	Index_GroupNames[i]=Index_GroupNames[i-1]+groups.get(i-1).getLevelNum(null);
     			    }
     		  }
     		  
     		  
-    		  for(int i=0;i<this.groups.size();i++){
+    		  for(int i=0;i<groups.size();i++){
     			  //设置组名
     			  sheet.addCell(
     					  new Label(0, Index_GroupNames[i], 
     							  groups.get(i).getGroupName().toString(),bodyFormat));
     			  
     			  sheet.mergeCells(0,Index_GroupNames[i] ,
-    					  0,Index_GroupNames[i]+ this.groups.get(i).getLevelNum(null)-1);
+    					  0,Index_GroupNames[i]+ groups.get(i).getLevelNum(null)-1);
     			  
     			  //设置每组的男子
     			  sheet.addCell(
     					  new Label(1, Index_GroupNames[i], 
     							  "男子",bodyFormat));
     			  sheet.mergeCells(1,Index_GroupNames[i],
-    					  1, Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male)-1);
+    					  1, Index_GroupNames[i]+ groups.get(i).getLevelNum(Gender.male)-1);
     			  
     			  for(int j=0;  j<groups.get(i).getLevelNum(Gender.male);j++){
     				  //男甲45kg
@@ -202,13 +247,13 @@ public class ExcelHandler {
     			  
     			  
     			//设置每组的女子
-    			  int Index_female = Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male);
+    			  int Index_female = Index_GroupNames[i]+ groups.get(i).getLevelNum(Gender.male);
     			 
     			  sheet.addCell(
     					  new Label(1, Index_female, 
     							  "女子",bodyFormat));
     			  sheet.mergeCells(1,Index_female,
-    					  1, Index_female+ this.groups.get(i).getLevelNum(Gender.female)-1);
+    					  1, Index_female+ groups.get(i).getLevelNum(Gender.female)-1);
     			  
     			  for(int j=0;  j<groups.get(i).getLevelNum(Gender.female);j++){
     				  //女甲50kg

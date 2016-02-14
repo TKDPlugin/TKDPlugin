@@ -32,30 +32,5 @@ public class ExportExcelUtil {
 		System.out.println(path+fileName);
 		return path+fileName;
 	}
-    
-	public static void exportExcel(JTable table, String filePath){
-		
-		
-		try {
-			TableModel model = table.getModel();
-			File file = new File(filePath);
-			OutputStreamWriter bWriter = new OutputStreamWriter(new FileOutputStream(file),"GB2312");
-		    for(int i=0; i < model.getColumnCount(); i++) {
-		    	bWriter.write(model.getColumnName(i));
-		        bWriter.write('\t');
-		    }
-		    bWriter.write('\n');
-		    for(int i=0; i< model.getRowCount(); i++) {
-		    	for(int j=0; j < model.getColumnCount(); j++) {
-		    		bWriter.write(model.getValueAt(i,j).toString());
-		            bWriter.write('\t');
-		        }
-		        bWriter.write('\n');
-		    }
-		    bWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
