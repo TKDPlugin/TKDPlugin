@@ -14,6 +14,7 @@ import javax.swing.JTable;
 
 import bl.BlController;
 import bl.Level;
+import ui.ExportExcelUtil;
 
 
 /**
@@ -55,15 +56,24 @@ public class RankPanel extends JPanel {
 	
    public void initComponent(){
 	     
-	     this.font = new Font("Microsoft YaHei UI", Font.PLAIN, 14);
+	     this.font = new Font("Microsoft YaHei UI", Font.PLAIN, 16);
 	     this.levelLB = new JLabel("级别");
 	     levelLB.setFont(font);
-	     levelLB.setBounds(120,0,LBW,LBH);
+	     levelLB.setBounds(120,10,LBW,LBH);
 	     initComboBox();
 	     initTable();
 	     this.exportBT = new JButton("导出");
 	     this.exportBT.setBounds(300,250,LBW,LBH);
-	     
+	     this.exportBT.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			
+				 String path  =   ExportExcelUtil.getPath();
+			    ExportExcelUtil.exportExcel(table, path);
+			}
+	    	 
+	     });
 	     
 	     this.add(levelLB);   this.add(levelBox);
 	     this.add(Spane);     this.add(exportBT);
