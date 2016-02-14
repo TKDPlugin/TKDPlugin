@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import bl.BlController;
 import bl.Group;
 
+
 public class SumPanel extends JPanel {
 
 	/**
