@@ -171,6 +171,7 @@ public class ExcelHandler {
     			  
     			  sheet.mergeCells(0,Index_GroupNames[i] ,
     					  0,Index_GroupNames[i]+ this.groups.get(i).getLevelNum(null)-1);
+    			  
     			  //设置每组的男子
     			  sheet.addCell(
     					  new Label(1, Index_GroupNames[i], 
