@@ -73,7 +73,7 @@ public class ExcelHandler {
     		  //竖直方向居中对齐           
     		  headerFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
     		  //坐标（列,行）
-    		  Label LB_0 = new Label (0,0,"成绩名次",headerFormat);
+    		  Label LB_0 = new Label (0,0,"                     成绩名次",headerFormat);
     		  sheet.addCell(LB_0);
     		  
     		  Label LB_1 = new Label (0,1,"组别项目",headerFormat);
@@ -115,7 +115,6 @@ public class ExcelHandler {
     		  sheet.addCell(LB_9);
     		  sheet.mergeCells(17, 0, 18, 0);
     		  
-		  
     		  for(int i=3;i<=18;i++){
     			  if(i%2!=0){
     			    sheet.addCell(new Label(i,1,"姓名",headerFormat));
@@ -129,6 +128,8 @@ public class ExcelHandler {
     		  e.printStackTrace();
     	  }
       }
+      
+      
       
       private void writeBody(WritableSheet sheet){
     	  
