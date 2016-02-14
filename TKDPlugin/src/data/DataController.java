@@ -36,7 +36,7 @@ public class DataController {
 	}
 
 	public ArrayList<Level> getSelectedLevels() {
-		ArrayList<String> selectedName = new ArrayList<>();
+		ArrayList<String> selectedName = new ArrayList<String>();
 		SQLBuilder builder = new SQLBuilder();
 		builder.Select(levelNameCol).From(levelTableName).Where(levelSelectedCol + " = true");
 		ResultSet set = builder.excuteQuery();
@@ -50,7 +50,7 @@ public class DataController {
 			return null;
 		}
 
-		ArrayList<Level> levels = new ArrayList<>();
+		ArrayList<Level> levels = new ArrayList<Level>();
 		for (String levelName : selectedName) {
 			levels.add(getALevel(levelName));
 		}
@@ -59,7 +59,8 @@ public class DataController {
 		return levels;
 	}
 
-	public Level getALevel(String levelName) {
+	public Level getALevel(final String levelName) {
+		
 		SQLBuilder builder = new SQLBuilder();
 		builder.Select("*").From(altTableName).Where("AthClass")
 		.EQUALS(levelName).AND("LastPlace > 0");

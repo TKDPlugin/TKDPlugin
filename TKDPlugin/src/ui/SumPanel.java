@@ -48,7 +48,7 @@ public class SumPanel extends JPanel {
 				// TODO Auto-generated method stub
 				String path  =   ExportExcelUtil.getPath();
 				excelHandler = new ExcelHandler(path);
-				excelHandler.exportSumExcel(groups);
+				excelHandler.exportSumExcel(controller.getMostRank(groups),groups);
 			}
 			   
 		   });

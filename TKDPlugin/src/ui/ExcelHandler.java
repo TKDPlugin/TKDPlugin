@@ -93,7 +93,7 @@ public class ExcelHandler {
       }
       
       
-      public void  exportSumExcel( ArrayList<Group>  groups){
+      public void  exportSumExcel(int [] ranks, ArrayList<Group>  groups){
     	  
     	  try{
     		  System.out.println("共有"+groups.size()+"组");
@@ -103,7 +103,7 @@ public class ExcelHandler {
     		
     		  WritableSheet sheet = workBook.createSheet("跆拳道汇总表1", 0);
 
-    	      this.writeHeader(sheet);
+    	      this.writeHeader(sheet,ranks);
     	      this.writeBody(sheet,groups);
     	      
     	      workBook.write();
@@ -115,7 +115,7 @@ public class ExcelHandler {
     	  }
       }
       
-      private void writeHeader(WritableSheet sheet){
+      private void writeHeader(WritableSheet sheet ,int [] ranks){
     	  try {             
     		  
     		  //创建表头的单元格格式         
@@ -136,39 +136,13 @@ public class ExcelHandler {
     		  sheet.mergeCells(0, 0, 2, 0);
     		  sheet.mergeCells(0, 1, 2, 1);
     		  
-    		  Label LB_2 = new Label(3,0,"第一名",headerFormat);
-    		  sheet.addCell(LB_2);
-    		  sheet.mergeCells(3, 0, 4, 0);
+    		  for(int i=0;i<ranks.length;i++){
+    		      sheet .addCell(new Label (3+i*2,0,"第"+ranks[i]+"名",headerFormat));
+    		      sheet.mergeCells(3+i*2, 0, 3+i*2+1,0 );
+    		  }
     		  
-    		  Label LB_3 = new Label(5,0,"第二名",headerFormat);
-    		  sheet.addCell(LB_3);
-    		  sheet.mergeCells(5, 0, 6, 0);
-    		 
-    		  Label LB_4 = new Label(7,0,"第三名",headerFormat);
-    		  sheet.addCell(LB_4);
-    		  sheet.mergeCells(7, 0, 8, 0);
-
-    		  Label LB_5 = new Label(9,0,"第三名",headerFormat);
-    		  sheet.addCell(LB_5);
-    		  sheet.mergeCells(9, 0, 10, 0);
-
-    		  Label LB_6 = new Label(11,0,"第五名",headerFormat);
-    		  sheet.addCell(LB_6);
-    		  sheet.mergeCells(11, 0, 12, 0);
     		  
-    		  Label LB_7 = new Label(13,0,"第五名",headerFormat);
-    		  sheet.addCell(LB_7);
-    		  sheet.mergeCells(13, 0, 14, 0);
-    		  
-    		  Label LB_8 = new Label(15,0,"第五名",headerFormat);
-    		  sheet.addCell(LB_8);
-    		  sheet.mergeCells(15, 0, 16, 0);
-    		  
-    		  Label LB_9 = new Label(17,0,"第五名",headerFormat);
-    		  sheet.addCell(LB_9);
-    		  sheet.mergeCells(17, 0, 18, 0);
-    		  
-    		  for(int i=3;i<=18;i++){
+    		  for(int i=3;i<3+2*ranks.length;i++){
     			  if(i%2!=0){
     			    sheet.addCell(new Label(i,1,"姓名",headerFormat));
     			  }else{

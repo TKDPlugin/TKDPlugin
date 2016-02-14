@@ -29,7 +29,7 @@ public class ObjToString {
 
 	static class Inner {
 		// 这个set是为了防止对象相互引用的问题，处理对象前会查看一下是否已经存在
-		HashSet<Object> objectSet = new HashSet<>();
+		HashSet<Object> objectSet = new HashSet<Object>();
 
 		// indent：缩进
 		private String buildString(Object object, int indent,boolean printName) {
@@ -104,7 +104,7 @@ public class ObjToString {
 				try {
 					builder.append(buildString(aField.get(object), indent + 1,false));
 					builder.append('\n');
-				} catch (IllegalArgumentException | IllegalAccessException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

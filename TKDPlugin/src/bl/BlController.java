@@ -57,7 +57,7 @@ public class BlController {
 		//assert isAllFinish() : "Completion isn't finished";
 		
 		ArrayList<Level> levels = getSelectedLevels();
-		HashMap<String, ArrayList<Level>> groupMap = new HashMap<>();
+		HashMap<String, ArrayList<Level>> groupMap = new HashMap<String, ArrayList<Level>>();
 		
 		for(Level aLevel:levels){
 			String groupName = aLevel.getGroupString();
@@ -69,12 +69,12 @@ public class BlController {
 			groupMap.get(groupName).add(aLevel);
 		}
 		
-		ArrayList<Group> groups = new ArrayList<>(groupMap.keySet().size());
+		ArrayList<Group> groups = new ArrayList<Group>(groupMap.keySet().size());
 		
 		for(String name:groupMap.keySet()){
 			ArrayList<Level> groupLevel = groupMap.get(name);
-			ArrayList<Level> maleLevel = new ArrayList<>();
-			ArrayList<Level> femaleLevel = new ArrayList<>();
+			ArrayList<Level> maleLevel = new ArrayList<Level>();
+			ArrayList<Level> femaleLevel = new ArrayList<Level>();
 			
 			//分拣男女list
 			for(Level level:groupLevel){

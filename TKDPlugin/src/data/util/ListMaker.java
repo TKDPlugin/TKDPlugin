@@ -41,7 +41,7 @@ public abstract class ListMaker<T> {
 			sql = SQL_or_TableName;
 		}
 
-		ArrayList<T> list = new ArrayList<>();
+		ArrayList<T> list = new ArrayList<T>();
 		try {
 			resultSet = excutor.excuteQuery(sql);
 			

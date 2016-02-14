@@ -24,7 +24,7 @@ public class Level implements Comparable<Level>{
 	public Level(String levelName,ArrayList<Athlete> list) {
         this.levelName = levelName;
         LevelStringAnalyze.analyzeLevel(this);
-        altheteList = new ArrayList<>(list);
+        altheteList = new ArrayList<Athlete>(list);
         Collections.sort(altheteList);
         
         places = new int[altheteList.size()];

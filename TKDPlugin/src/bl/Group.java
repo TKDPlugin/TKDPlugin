@@ -47,7 +47,7 @@ public class Group {
 	}
 
 	public ArrayList<Level> getAllLevel(){
-		ArrayList<Level> allLevel = new ArrayList<>(maleLevels);
+		ArrayList<Level> allLevel = new ArrayList<Level>(maleLevels);
 		allLevel.addAll(femaleLevels);
 		return allLevel;
 	}
