@@ -1,17 +1,16 @@
 package ui;
 
-import java.awt.Color;
+
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.hxtt.concurrent.w;
-
 import bl.BlController;
+import bl.Group;
 
 public class SumPanel extends JPanel {
 
@@ -24,6 +23,7 @@ public class SumPanel extends JPanel {
 	
 	private BlController controller;
 	private ExcelHandler excelHandler;
+	private ArrayList<Group> groups;
 	
 	private Font font;
 	private JButton exportBT;
@@ -31,6 +31,7 @@ public class SumPanel extends JPanel {
 	  public SumPanel (BlController blcontroller){
 			this.setLayout(null);
 			this.controller = blcontroller;
+			this.groups = this.controller.getAllGroup();
 			this.initComponent();
 			
 		}
@@ -45,7 +46,7 @@ public class SumPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				String path  =   ExportExcelUtil.getPath();
-				excelHandler = new ExcelHandler(path);
+				excelHandler = new ExcelHandler(path,groups);
 				excelHandler.exportExcel();
 			}
 			   

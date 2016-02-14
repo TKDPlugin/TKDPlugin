@@ -4,9 +4,10 @@ package ui;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
-
-
+import bl.Gender;
+import bl.Group;
 import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.format.VerticalAlignment;
@@ -19,6 +20,7 @@ import jxl.write.WritableWorkbook;
 
 public class ExcelHandler {
       private OutputStream reportOS;
+      private ArrayList<Group> groups;
     
     //表头的字体格式，字体、大小和样式 
       private final static WritableFont HEADER_FONT_STYLE = new WritableFont(     
@@ -30,7 +32,7 @@ public class ExcelHandler {
     * 构造函数需要导出路径作为参数
     * @param filePath
     */
-      public ExcelHandler(String filePath) {      
+      public ExcelHandler(String filePath  , ArrayList<Group>  groups) {      
     	  try { 
   
                    File file = new File(filePath); 
@@ -39,6 +41,8 @@ public class ExcelHandler {
                    }              
                  
                     this.reportOS = new FileOutputStream(filePath);   
+                    this.groups = groups;
+                    System.out.println("共有"+groups.size()+"组");
                  
                  } catch (Exception e) {    
                 	 System.out.println("ExcelHandler 启动失败");
@@ -51,6 +55,9 @@ public class ExcelHandler {
     				  Workbook.createWorkbook(this.reportOS);
     		
     		  WritableSheet sheet = workBook.createSheet("跆拳道汇总表1", 0);
+    		  
+    	
+    		  
     	      this.writeHeader(sheet);
     	      this.writeBody(sheet);
     	      
@@ -65,6 +72,7 @@ public class ExcelHandler {
       
       private void writeHeader(WritableSheet sheet){
     	  try {             
+    		  
     		  //创建表头的单元格格式         
     		  WritableCellFormat headerFormat = new WritableCellFormat(     
     				  HEADER_FONT_STYLE);         
@@ -124,6 +132,8 @@ public class ExcelHandler {
     			
     		  }
     		  
+    		  
+    		  
     	  }catch (Exception e){
     		  e.printStackTrace();
     	  }
@@ -132,7 +142,51 @@ public class ExcelHandler {
       
       
       private void writeBody(WritableSheet sheet){
-    	  
+    	  try{
+    		//组名的起始行数
+    		  int [] Index_GroupNames = new int [this.groups.size()];
+    		  
+    		  for(int i=0;i<this.groups.size();i++){
+    			    if(i==0){
+    			    	Index_GroupNames[i]=2;
+    			    }else{
+    			    	Index_GroupNames[i]=Index_GroupNames[i-1]+this.groups.get(i-1).getLevelNum(null);
+    			    }
+    		  }
+    		  
+    		  
+    		  for(int i=0;i<this.groups.size();i++){
+    			  //设置组名
+    			  sheet.addCell(
+    					  new Label(0, Index_GroupNames[i], 
+    							  groups.get(i).getGroupName().toString(),BODY_FONT_STYLE));
+    			  
+    			  sheet.mergeCells(0,Index_GroupNames[i] ,
+    					  0,Index_GroupNames[i]+ this.groups.get(i).getLevelNum(null)-1);
+    			  //设置每组的男子
+    			  sheet.addCell(
+    					  new Label(1, Index_GroupNames[i], 
+    							  "男子",BODY_FONT_STYLE));
+    			  sheet.mergeCells(1,Index_GroupNames[i],
+    					  1, Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male)-1);
+    			  
+    			  for(int j=0;  j<groups.get(i).getLevelNum(Gender.male);j++){
+    				  
+    			  }
+    			  
+    			//设置每组的女子
+    			  int Index_female = Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male);
+    			  sheet.addCell(
+    					  new Label(1, Index_female, 
+    							  "女子",BODY_FONT_STYLE));
+    			  sheet.mergeCells(1,Index_female,
+    					  1, Index_female+ this.groups.get(i).getLevelNum(Gender.female)-1);
+    			  
+    		  }
+    		  
+    	  }catch(Exception e){
+              e.printStackTrace();     
+    	  }
       }
       
       
