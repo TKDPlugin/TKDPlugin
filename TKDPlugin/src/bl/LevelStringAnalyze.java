@@ -51,19 +51,19 @@ public class LevelStringAnalyze {
 
 	}
 
-	public static void main(String[] args) {
-		
-		Athlete athlete = new Athlete();
-		ArrayList<Athlete> arrayList = new ArrayList<>();
-		arrayList.add(athlete);
-
-		//String levelName = "男俱乐部12KG";
-		String levelName = "男子俱乐部12KG";
-		Level level = new Level(levelName, arrayList);
-		//analyzeLevel(level);
-		System.out.println(level.toString());
-		System.out.println(level.getLevelName());
-		System.out.println(level.getGroupString());
-	}
+//	public static void main(String[] args) {
+//		
+//		Athlete athlete = new Athlete();
+//		ArrayList<Athlete> arrayList = new ArrayList<>();
+//		arrayList.add(athlete);
+//
+//		//String levelName = "男俱乐部12KG";
+//		String levelName = "男子俱乐部12KG";
+//		Level level = new Level(levelName, arrayList);
+//		//analyzeLevel(level);
+//		System.out.println(level.toString());
+//		System.out.println(level.getLevelName());
+//		System.out.println(level.getGroupString());
+//	}
 
 }

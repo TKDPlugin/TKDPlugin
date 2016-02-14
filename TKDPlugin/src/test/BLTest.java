@@ -27,5 +27,10 @@ public class BLTest {
 	public void testIsAllFinish() {
 		System.out.println("Is all Finished :"+ObjToString.toString(bl.isAllFinish()));
 	}
+	
+	@Test
+	public void testGetGroup(){
+		System.out.println(ObjToString.toString(bl.getAllGroup()));
+	}
 
 }

@@ -37,7 +37,7 @@ public class BlController {
 	 */
 	
 	public ArrayList<Group> getAllGroup(){
-		assert isAllFinish() : "Completion isn't finished";
+		//assert isAllFinish() : "Completion isn't finished";
 		
 		ArrayList<Level> levels = getSelectedLevels();
 		HashMap<String, ArrayList<Level>> groupMap = new HashMap<>();
