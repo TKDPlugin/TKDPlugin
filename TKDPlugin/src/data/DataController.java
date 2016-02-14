@@ -3,6 +3,7 @@ package data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import bl.Athlete;
 import bl.Level;
@@ -53,7 +54,8 @@ public class DataController {
 		for (String levelName : selectedName) {
 			levels.add(getALevel(levelName));
 		}
-
+		
+		Collections.sort(levels);
 		return levels;
 	}
 
