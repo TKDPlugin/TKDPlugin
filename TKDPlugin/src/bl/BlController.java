@@ -35,6 +35,23 @@ public class BlController {
 	 * @return boolean 是否比赛完全结束，所有人都有名次
 	 * 
 	 */
+	public boolean isAllFinish() {
+		return dataController.isAllFinish();
+	}
+	
+	public int[] getMostRank(ArrayList<Group> groups){
+		int[] result = new int[0];
+		
+		for(Group group:groups){
+			for(Level level:group.getAllLevel()){
+				if(level.getPlaces().length>result.length){
+					result = level.getPlaces();
+				}
+			}
+		}
+		
+		return result;
+	}
 	
 	public ArrayList<Group> getAllGroup(){
 		//assert isAllFinish() : "Completion isn't finished";
@@ -77,8 +94,5 @@ public class BlController {
 		return groups;
 	}
 	
-	public boolean isAllFinish() {
-		return dataController.isAllFinish();
-	}
 
 }

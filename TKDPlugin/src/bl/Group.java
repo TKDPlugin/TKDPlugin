@@ -1,6 +1,7 @@
 package bl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Group {
 	private ArrayList<Level> maleLevels;
@@ -45,4 +46,10 @@ public class Group {
 		}	
 	}
 
+	public ArrayList<Level> getAllLevel(){
+		ArrayList<Level> allLevel = new ArrayList<>(maleLevels);
+		allLevel.addAll(femaleLevels);
+		return allLevel;
+	}
+	
 }

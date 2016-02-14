@@ -11,12 +11,27 @@ public class Level implements Comparable<Level>{
     private Gender gender;
     private KGLevel kgLevel;
     private String groupString;
-  
-    public Level(String levelName,ArrayList<Athlete> list) {
+    private int[] places;
+    
+    public int[] getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(int[] places) {
+		this.places = places;
+	}
+
+	public Level(String levelName,ArrayList<Athlete> list) {
         this.levelName = levelName;
         LevelStringAnalyze.analyzeLevel(this);
         altheteList = new ArrayList<>(list);
         Collections.sort(altheteList);
+        
+        places = new int[altheteList.size()];
+        for(int i=0;i<altheteList.size();i++){
+        	Athlete athlete = altheteList.get(i);
+        	places[i] = athlete.getRank();
+        }
     }
     
     public String getLevelName() {
@@ -29,12 +44,6 @@ public class Level implements Comparable<Level>{
 
     public ArrayList<Athlete> getAltheteList() {
         return altheteList;
-    }
-
-
-
-    public void setAltheteList(ArrayList<Athlete> altheteList) {
-        this.altheteList = altheteList;
     }
 
     public Gender getGender() {

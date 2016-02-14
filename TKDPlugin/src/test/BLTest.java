@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.awt.Rectangle;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,4 +35,9 @@ public class BLTest {
 		System.out.println(ObjToString.toString(bl.getAllGroup()));
 	}
 
+	@Test
+	public void testGetMostRank(){
+		int[] rank = bl.getMostRank(bl.getAllGroup());
+		System.out.println(ObjToString.toString(rank));
+	}
 }
