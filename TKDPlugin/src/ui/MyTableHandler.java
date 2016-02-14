@@ -27,9 +27,9 @@ public class MyTableHandler {
     	//深灰 （字体颜色）
       	Color  foreColor = new Color(0,0,0,200);
       	//浅蓝色0 ,191 ,255,80
-      	Color   bgColor1 = new Color(0 ,191 ,255,80);
+      	final Color   bgColor1 = new Color(0 ,191 ,255,80);
       	//白色
-      	Color bgColor2 = new Color(255, 255 ,255,100);
+      	final Color bgColor2 = new Color(255, 255 ,255,100);
   		table.setRowHeight(rowH);
   		table.setFont(font);
        	table.setForeground(foreColor);
@@ -50,7 +50,7 @@ public class MyTableHandler {
   	    table.setShowGrid(false);
   	    
   		//蓝色
-  		Color  headerColor = new Color(0 ,191 ,255,180);
+  		final Color  headerColor = new Color(0 ,191 ,255,180);
   		JTableHeader header = table.getTableHeader();
   		//header.setPreferredSize(new Dimension(showW,rowH));
   		header.setOpaque(false);
