@@ -10,6 +10,7 @@ public class Level implements Comparable<Level>{
     private String levelName;
     private Gender gender;
     private KGLevel kgLevel;
+    private String groupString;
   
     public Level(String levelName,ArrayList<Athlete> list) {
         this.levelName = levelName;
@@ -22,7 +23,9 @@ public class Level implements Comparable<Level>{
         return levelName;
     }
 
-
+    public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
 
     public ArrayList<Athlete> getAltheteList() {
         return altheteList;
@@ -42,6 +45,9 @@ public class Level implements Comparable<Level>{
         this.gender = gender;
     }
 
+    /**
+     * kgLevel的toString可以得到 45Kg或者+45Kg这种字符串
+     */
     public KGLevel getKgLevel() {
         return kgLevel;
     }
@@ -66,5 +72,13 @@ public class Level implements Comparable<Level>{
             return gender.compareTo(o.gender);
         }
     }
+
+	public String getGroupString() {
+		return groupString;
+	}
+
+	public void setGroupString(String groupString) {
+		this.groupString = groupString;
+	}
   
 }
