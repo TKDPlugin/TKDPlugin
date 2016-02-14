@@ -143,6 +143,14 @@ public class ExcelHandler {
       
       private void writeBody(WritableSheet sheet){
     	  try{
+    		//创建表头的单元格格式         
+    		  WritableCellFormat bodyFormat = new WritableCellFormat(     
+    				  BODY_FONT_STYLE);         
+    		  //水平方向居中对齐
+    		  bodyFormat.setAlignment(Alignment.CENTRE);
+    		  //竖直方向居中对齐           
+    		  bodyFormat.setVerticalAlignment(VerticalAlignment.CENTRE);
+    		  
     		//组名的起始行数
     		  int [] Index_GroupNames = new int [this.groups.size()];
     		  
@@ -159,28 +167,65 @@ public class ExcelHandler {
     			  //设置组名
     			  sheet.addCell(
     					  new Label(0, Index_GroupNames[i], 
-    							  groups.get(i).getGroupName().toString(),BODY_FONT_STYLE));
+    							  groups.get(i).getGroupName().toString(),bodyFormat));
     			  
     			  sheet.mergeCells(0,Index_GroupNames[i] ,
     					  0,Index_GroupNames[i]+ this.groups.get(i).getLevelNum(null)-1);
+    			  
     			  //设置每组的男子
     			  sheet.addCell(
     					  new Label(1, Index_GroupNames[i], 
-    							  "男子",BODY_FONT_STYLE));
+    							  "男子",bodyFormat));
     			  sheet.mergeCells(1,Index_GroupNames[i],
     					  1, Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male)-1);
     			  
     			  for(int j=0;  j<groups.get(i).getLevelNum(Gender.male);j++){
+    				  //男甲45kg
+    				  sheet.addCell(
+        					  new Label(2, Index_GroupNames[i]+j, 
+        							 groups.get(i).getLevels(Gender.male).get(j).getLevelName().toString(),bodyFormat));
+    			     //一到八名
+    				  for(int k=0;k<groups.get(i).getLevels(Gender.male).get(j).getAltheteList().size();k++){
+    			          sheet.addCell(
+            					  new Label(3+k*2, Index_GroupNames[i]+j, 
+            							 groups.get(i).getLevels(Gender.male).get(j).getAltheteList().get(k).getName(),bodyFormat));
+    			      
+    			          sheet.addCell(
+        					  new Label(3+k*2+1, Index_GroupNames[i]+j, 
+        							 groups.get(i).getLevels(Gender.male).get(j).getAltheteList().get(k).getTeam(),bodyFormat));
+			           }
+    		}
     				  
-    			  }
+    				  
+
+    			  
+    			  
     			  
     			//设置每组的女子
     			  int Index_female = Index_GroupNames[i]+ this.groups.get(i).getLevelNum(Gender.male);
+    			 
     			  sheet.addCell(
     					  new Label(1, Index_female, 
-    							  "女子",BODY_FONT_STYLE));
+    							  "女子",bodyFormat));
     			  sheet.mergeCells(1,Index_female,
     					  1, Index_female+ this.groups.get(i).getLevelNum(Gender.female)-1);
+    			  
+    			  for(int j=0;  j<groups.get(i).getLevelNum(Gender.female);j++){
+    				  //女甲50kg
+    				  sheet.addCell(
+        					  new Label(2, Index_female+j, 
+        							 groups.get(i).getLevels(Gender.female).get(j).getLevelName().toString(),bodyFormat));
+    				//一到八名
+    				  for(int k=0;k<groups.get(i).getLevels(Gender.female).get(j).getAltheteList().size();k++){
+    			          sheet.addCell(
+            					  new Label(3+k*2, Index_female+j, 
+            							 groups.get(i).getLevels(Gender.female).get(j).getAltheteList().get(k).getName(),bodyFormat));
+    			      
+    			          sheet.addCell(
+        					  new Label(3+k*2+1, Index_female+j, 
+        							 groups.get(i).getLevels(Gender.female).get(j).getAltheteList().get(k).getTeam(),bodyFormat));
+			           }
+    			 }
     			  
     		  }
     		  
