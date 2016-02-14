@@ -229,7 +229,7 @@ public class ExcelHandler {
     				  sheet.addCell(
         					  new Label(2, Index_GroupNames[i]+j, 
         							 groups.get(i).getLevels(Gender.male).get(j).getLevelName().toString(),bodyFormat));
-    			     //一到八名
+    				//一到八名、十二名、十六名。。
     				  for(int k=0;k<groups.get(i).getLevels(Gender.male).get(j).getAltheteList().size();k++){
     			          sheet.addCell(
             					  new Label(3+k*2, Index_GroupNames[i]+j, 
@@ -260,7 +260,7 @@ public class ExcelHandler {
     				  sheet.addCell(
         					  new Label(2, Index_female+j, 
         							 groups.get(i).getLevels(Gender.female).get(j).getLevelName().toString(),bodyFormat));
-    				//一到八名
+    				//一到八名、十二名、十六名。。
     				  for(int k=0;k<groups.get(i).getLevels(Gender.female).get(j).getAltheteList().size();k++){
     			          sheet.addCell(
             					  new Label(3+k*2, Index_female+j, 
