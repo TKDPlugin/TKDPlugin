@@ -70,7 +70,7 @@ public class RankPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				 String path  =   ExportExcelUtil.getPath();
-			    ExportExcelUtil.exportExcel(table, path);
+			     ExportExcelUtil.exportExcel(table, path);
 			}
 	    	 
 	     });

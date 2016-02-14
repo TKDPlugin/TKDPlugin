@@ -1,5 +1,7 @@
 package ui;
-
+/*
+ * 排名表格使用该类进行简单的导出。
+ */
 
 import java.awt.Dimension;
 import java.awt.FileDialog;
