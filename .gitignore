@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+TKDPlugin/bin/ui/MyTableModel.class
+TKDPlugin/bin/ui/rankPanel.class
+TKDPlugin/src/ui/MyTableModel.java

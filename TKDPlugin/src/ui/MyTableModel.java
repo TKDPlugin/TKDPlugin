@@ -38,8 +38,11 @@ public class MyTableModel extends AbstractTableModel {
 			  title.add("姓名");
 			  title.add("队伍");
 <<<<<<< HEAD
+<<<<<<< HEAD
 			  title.add("级别");
 			  title.add("选择");
+=======
+>>>>>>> parent of 165717e... 根据李老师新的需求修改
 =======
 >>>>>>> parent of 165717e... 根据李老师新的需求修改
 			  this.setData(athleteList);
@@ -90,8 +93,11 @@ public class MyTableModel extends AbstractTableModel {
 			temp.add( athleteList.get(i).getName());
 			temp.add( athleteList.get(i).getTeam());
 <<<<<<< HEAD
+<<<<<<< HEAD
 			temp.add(athleteList.get(i).getLevelName());
 			temp.add(new JRadioButton("",false));
+=======
+>>>>>>> parent of 165717e... 根据李老师新的需求修改
 =======
 >>>>>>> parent of 165717e... 根据李老师新的需求修改
 			data.add(temp);
