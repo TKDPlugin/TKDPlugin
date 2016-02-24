@@ -74,8 +74,8 @@ public class RankPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-			     
-				 String path  =   ExportExcelUtil.getRankPath(levelBox.getSelectedItem().toString());
+			
+				 String path  =   ExportExcelUtil.getPath();
 				 excelHandler = new ExcelHandler(path);
 			     excelHandler.exportRankExcel(table);
 			}

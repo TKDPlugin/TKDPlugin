@@ -37,9 +37,7 @@ public class ExcelHandler {
     	  try { 
   
                    File file = new File(filePath); 
-              
-                   if (!file.exists()) {      
-                	
+                   if (!file.exists()) {              
                 	  file.createNewFile();         
                    }              
                  
