@@ -37,10 +37,8 @@ public class MyTableModel extends AbstractTableModel {
 			  title.add("名次");
 			  title.add("姓名");
 			  title.add("队伍");
-
 			  title.add("级别");
 			  title.add("选择");
-
 			  this.setData(athleteList);
 		}
 	
@@ -88,12 +86,8 @@ public class MyTableModel extends AbstractTableModel {
 			temp.add( athleteList.get(i).getRank()+"");
 			temp.add( athleteList.get(i).getName());
 			temp.add( athleteList.get(i).getTeam());
-
-
 			temp.add(athleteList.get(i).getLevelName());
 			temp.add(new JRadioButton("",false));
-
-
 			data.add(temp);
 		}
   	    fireTableDataChanged();
