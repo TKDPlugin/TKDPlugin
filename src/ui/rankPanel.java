@@ -1,11 +1,13 @@
 package ui;
 
 import java.awt.Font;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ import bl.BlController;
 import bl.Level;
 import ui.export.ExcelHandler;
 import ui.export.ExportExcelUtil;
+import ui.export.TextReplace;
 
 
 /**
@@ -103,14 +106,34 @@ public class RankPanel extends JPanel {
 	     this.printBT.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-			
+			       JCheckBox[] box = myTableRender.getCheckBoxs();
+			       List<String>  names =  new  ArrayList<>();  
+			       List<String>   levels =  new  ArrayList<>();  
+			       List<String >   ranks =  new  ArrayList<>();  
+			       for(int i=0;i<box.length;i++){
+			    	     if(box[i].isSelected()){
+			    	    	  names.add(table.getValueAt(i,getColumnIndex (table,"姓名")).toString());
+			    	    	  levels.add(table.getValueAt(i,getColumnIndex (table,"级别")).toString());
+			    	    	  ranks.add(table.getValueAt(i,getColumnIndex (table,"名次")).toString());
+			    	     }
+			       }
 				 
+			        TextReplace.exportWord(names, levels, ranks);
 			}
 	    	 
 	     });
 
 	     this.add(levelLB);   this.add(levelBox);
 	     this.add(Spane);     this.add(exportBT);  this.add(selectAllBT);  this.add(printBT);
+   }
+   
+   private int getColumnIndex(JTable table,String name){
+	   for(int i=0;i<table.getColumnCount();i++){
+		   if(name.equals(table.getColumnName(i))){
+			   return i;
+		   }
+	   }
+	   return -1;
    }
    
    private void initComboBox(){
