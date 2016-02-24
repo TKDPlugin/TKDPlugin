@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
@@ -17,6 +18,8 @@ public class MyTableHandler {
 	private static int showH=360;
 	private static int showW=210;
 	private static Font font = new Font("微软雅黑", Font.PLAIN, 18);
+	
+	final private MyTableRender render = new MyTableRender();
 	
 	public static void decorateTableAndSpane(JTable table ,JScrollPane spane){
 		initTable(table);
@@ -41,9 +44,9 @@ public class MyTableHandler {
   	        table.getColumnModel().getColumn(i).setPreferredWidth(100);
   	    }
   		
-  		//table.setCellSelectionEnabled(false);
+  		table.setCellSelectionEnabled(true);
   		//每次可以选中一行
-  		//table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  	//	table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   		//设置表格是否透明(false 为透明)
   		table.setOpaque(false);
   		//设置是否显示网格线
@@ -55,27 +58,7 @@ public class MyTableHandler {
   		//header.setPreferredSize(new Dimension(showW,rowH));
   		header.setOpaque(false);
   		
-  		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
-  			private static final long serialVersionUID = 1L;
-
-  			@Override
-  			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-  					boolean hasFocus, int row, int column) {
-
-  				if (row % 2 == 0){
-  					setBackground(bgColor2);
-  			    }
-  				else if(row % 2 == 1){
-  					setBackground(bgColor1);
-  				}
-  				else{
-  					
-  					setBackground(headerColor);
-  				}
-  				
-  				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-  			}
-  		};
+  		MyTableRender dtr = new MyTableRender();
   		dtr.setHorizontalAlignment(JLabel.CENTER);
   		for (int i = 0; i < table.getColumnCount(); i++) {
   			table.getColumnModel().getColumn(i).setCellRenderer(dtr);

@@ -3,6 +3,7 @@ package ui;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JRadioButton;
 import javax.swing.table.AbstractTableModel;
 
 import bl.Athlete;
@@ -23,7 +24,7 @@ public class MyTableModel extends AbstractTableModel {
 
 	   private  ArrayList<Athlete> athleteList;
 	   private Vector<String> title=null;
-	   private Vector<Vector<String>> data=null;
+	   private Vector<Vector<Object>> data=null;
 	   
 		public  MyTableModel(ArrayList<Athlete> athleteList){
 			   super();
@@ -32,11 +33,12 @@ public class MyTableModel extends AbstractTableModel {
 		
 		public void init(ArrayList<Athlete> athleteList){
 			  title = new Vector<String>();
-			  data = new Vector<Vector<String>>();
+			  data = new Vector<Vector<Object>>();
 			  title.add("名次");
 			  title.add("姓名");
 			  title.add("队伍");
 			  title.add("级别");
+			  title.add("选择");
 			  this.setData(athleteList);
 		}
 	
@@ -77,14 +79,15 @@ public class MyTableModel extends AbstractTableModel {
 	 */
   public void  setData(ArrayList<Athlete>  athleteList){
   	   
-  	    this.data=new Vector<Vector<String>>();
+  	    this.data=new Vector<Vector<Object>>();
   	    this.athleteList = athleteList;
   	    for(int i = 0; i< athleteList.size();i++){
-			Vector<String> temp = new Vector<String> ();
+			Vector<Object> temp = new Vector<Object> ();
 			temp.add( athleteList.get(i).getRank()+"");
 			temp.add( athleteList.get(i).getName());
 			temp.add( athleteList.get(i).getTeam());
 			temp.add(athleteList.get(i).getLevelName());
+			temp.add(new JRadioButton("",false));
 			data.add(temp);
 		}
   	    fireTableDataChanged();

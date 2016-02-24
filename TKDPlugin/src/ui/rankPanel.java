@@ -3,14 +3,19 @@ package ui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
 
 import bl.BlController;
 import bl.Level;
@@ -76,7 +81,7 @@ public class RankPanel extends JPanel {
 			}
 	    	 
 	     });
-	     
+
 	     this.add(levelLB);   this.add(levelBox);
 	     this.add(Spane);     this.add(exportBT);
    }
@@ -106,7 +111,10 @@ public class RankPanel extends JPanel {
    private void initTable(){
 	   this.model = new MyTableModel(levelList.get(0).getAltheteList());
 	   this.table  = new JTable(model);
+	
 	   Spane = new JScrollPane(table);
+	   
+	   
 	   MyTableHandler.decorateTableAndSpane(table, Spane);
 	   Spane.setBounds(45,50,showW,showH);
    }
