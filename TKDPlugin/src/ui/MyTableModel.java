@@ -89,8 +89,10 @@ public class MyTableModel extends AbstractTableModel {
 			temp.add( athleteList.get(i).getName());
 			temp.add( athleteList.get(i).getTeam());
 
+
 			temp.add(athleteList.get(i).getLevelName());
 			temp.add(new JRadioButton("",false));
+
 
 			data.add(temp);
 		}
