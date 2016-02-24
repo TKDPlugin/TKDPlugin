@@ -19,18 +19,26 @@ import javax.swing.table.TableModel;
 
 public class ExportExcelUtil {
 	
-	public static String  getPath(){
-		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)screensize.getWidth();
-		int height = (int)screensize.getHeight();
-		
-		FileDialog fileDialog = new FileDialog(new JFrame(), null, FileDialog.SAVE);
-		fileDialog.setLocation(width-fileDialog.getWidth()/2, height-fileDialog.getHeight()/2 );
-		fileDialog .setVisible(true);
-		String path = fileDialog.getDirectory();
-		String fileName = fileDialog.getFile()+".xls";
+	public static String  getRankPath(String fileName){
+//		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+//		int width = (int)screensize.getWidth();
+//		int height = (int)screensize.getHeight();
+//		
+//		FileDialog fileDialog = new FileDialog(new JFrame(), null, FileDialog.SAVE);
+//		fileDialog.setLocation(width-fileDialog.getWidth()/2, height-fileDialog.getHeight()/2 );
+//		fileDialog .setVisible(true);
+		String path ="排名表格/" ;
+	    fileName = fileName+".xls";
 		System.out.println(path+fileName);
 		return path+fileName;
 	}
+	
+	public static String  getSumPath(){
+		String path ="汇总表格/" ;
+	    String fileName = TimeUtil.getCurrentDate()+".xls";
+		System.out.println(path+fileName);
+		return path+fileName;
+	}
+	
 
 }
