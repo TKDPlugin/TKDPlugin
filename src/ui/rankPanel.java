@@ -53,7 +53,7 @@ public class RankPanel extends JPanel {
 	private MyTableRender  myTableRender;
 	private MyTableModel model;
     private JScrollPane Spane;
-    private JButton exportBT;
+  //  private JButton exportBT;
     private JButton selectAllBT;
     private JButton printBT;
     
@@ -77,7 +77,7 @@ public class RankPanel extends JPanel {
 	     initTable();
 	     
 	     this.selectAllBT = new JButton("全选");
-	     this.selectAllBT.setBounds(100,250,LBW,LBH);
+	     this.selectAllBT.setBounds(150,250,LBW,LBH);
 	     this.selectAllBT.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -88,21 +88,21 @@ public class RankPanel extends JPanel {
 		     });
 	     
 	     
-	     this.exportBT = new JButton("导出");
-	     this.exportBT.setBounds(selectAllBT.getX()+LBW+20,selectAllBT.getY(),LBW,LBH);
-	     this.exportBT.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-			
-				 String path  =   ExportExcelUtil.getPath();
-				 excelHandler = new ExcelHandler(path);
-			     excelHandler.exportRankExcel(table);
-			}
-	    	 
-	     });
+//	     this.exportBT = new JButton("导出Excel");
+//	     this.exportBT.setBounds(selectAllBT.getX()+LBW+20,selectAllBT.getY(),LBW,LBH);
+//	     this.exportBT.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//			
+//				 String path  =   ExportExcelUtil.getPath();
+//				 excelHandler = new ExcelHandler(path);
+//			     excelHandler.exportRankExcel(table);
+//			}
+//	    	 
+//	     });
 	     
-	     this.printBT = new JButton("打印");
-	     this.printBT.setBounds(exportBT.getX()+LBW+20,selectAllBT.getY(),LBW,LBH);
+	     this.printBT = new JButton("导出");
+	     this.printBT.setBounds(selectAllBT.getX()+LBW+50,selectAllBT.getY(),LBW,LBH);
 	     this.printBT.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,7 +124,8 @@ public class RankPanel extends JPanel {
 	     });
 
 	     this.add(levelLB);   this.add(levelBox);
-	     this.add(Spane);     this.add(exportBT);  this.add(selectAllBT);  this.add(printBT);
+	     this.add(Spane);     //this.add(exportBT); 
+	     this.add(selectAllBT);  this.add(printBT);
    }
    
    private int getColumnIndex(JTable table,String name){
