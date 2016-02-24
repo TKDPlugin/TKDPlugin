@@ -8,22 +8,24 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 public class MyTableHandler {
-	private static int  rowH = 20;
-	private static int showH=360;
-	private static int showW=210;
-	private static Font font = new Font("微软雅黑", Font.PLAIN, 18);
+	private static int  rowH = 30;
+	private static int showH=300;
+	private static int showW=400;
+	private static Font font = new Font("微软雅黑", Font.PLAIN, 16);
 	
-	public static void decorateTableAndSpane(JTable table ,JScrollPane spane){
-		initTable(table);
+	public static void decorateTableAndSpane(JTable table ,
+			DefaultTableCellRenderer dtr,JScrollPane spane){
+		initTable(table ,dtr);
 		initSpane(spane,table);
 	}
       
-      public static void initTable(JTable table){
+      public static void initTable(JTable table,DefaultTableCellRenderer dtr){
     	//深灰 （字体颜色）
       	Color  foreColor = new Color(0,0,0,200);
       	//浅蓝色0 ,191 ,255,80
@@ -55,27 +57,7 @@ public class MyTableHandler {
   		//header.setPreferredSize(new Dimension(showW,rowH));
   		header.setOpaque(false);
   		
-  		DefaultTableCellRenderer dtr = new DefaultTableCellRenderer() {
-  			private static final long serialVersionUID = 1L;
-
-  			@Override
-  			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-  					boolean hasFocus, int row, int column) {
-
-  				if (row % 2 == 0){
-  					setBackground(bgColor2);
-  			    }
-  				else if(row % 2 == 1){
-  					setBackground(bgColor1);
-  				}
-  				else{
-  					
-  					setBackground(headerColor);
-  				}
-  				
-  				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-  			}
-  		};
+  		
   		dtr.setHorizontalAlignment(JLabel.CENTER);
   		for (int i = 0; i < table.getColumnCount(); i++) {
   			table.getColumnModel().getColumn(i).setCellRenderer(dtr);
