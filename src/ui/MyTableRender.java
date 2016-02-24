@@ -41,10 +41,10 @@ public class MyTableRender extends DefaultTableCellRenderer {
 		if (column == table.getColumnCount()-1&&row!=-1) {
 			
 			if (checkBoxs == null) {
-				initBoxs(table.getRowCount()+1);
+				initBoxs(table.getRowCount());
 			}
 			
-			JCheckBox bt = checkBoxs[row + 1];
+			JCheckBox bt = checkBoxs[row];
 			if (hasFocus) {
 
 				if (bt.isSelected()) {
