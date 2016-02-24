@@ -38,7 +38,7 @@ public class RankPanel extends JPanel {
     private ExcelHandler excelHandler;
     
 	private Font font;
-	private JComboBox<String> levelBox ;
+	private JComboBox levelBox ;
 	private JLabel levelLB;
 	private JTable table ;
 	private MyTableModel model;
@@ -88,7 +88,7 @@ public class RankPanel extends JPanel {
 	    	   levelNames[i]  =  levelList.get(i).getLevelName();
 	     }
 	     
-	     levelBox = new JComboBox<String>(levelNames);
+	     levelBox = new JComboBox(levelNames);
 	     levelBox.setBounds(levelLB.getX()+LBW,levelLB.getY(),150,LBH);
 	     levelBox.addActionListener(new ActionListener() {
 

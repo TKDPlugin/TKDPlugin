@@ -25,9 +25,10 @@ public class KGLevel implements Comparable<KGLevel> {
     public int compareTo(KGLevel o) {
         // TODO Auto-generated method stub
         if(kg!=o.kg) {
-            return Integer.compare(kg, o.kg);
+        	return Integer.valueOf(kg).compareTo(Integer.valueOf(o.kg));
+            
         }else {
-            return Boolean.compare(greater, o.greater);
+        	return Boolean.valueOf(greater).compareTo(Boolean.valueOf(o.greater));
         }
     }
     

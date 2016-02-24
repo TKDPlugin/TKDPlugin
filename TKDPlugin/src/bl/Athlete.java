@@ -8,7 +8,7 @@ public class Athlete implements Comparable<Athlete>{
     
 
     public int compareTo(Athlete o) {
-        return Integer.compare(rank, o.rank);
+        return Integer.valueOf(rank).compareTo(Integer.valueOf(o.rank));
     }
 
 
