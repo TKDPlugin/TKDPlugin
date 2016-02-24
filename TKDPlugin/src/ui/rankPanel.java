@@ -35,7 +35,7 @@ public class RankPanel extends JPanel {
 	private static int LBW=60;
 	private static int LBH=30;
 	private static int showW=360;
-	private static int showH=170;
+	private static int showH=260;
 	
 	private BlController controller;
 	//进行中的级别列表
@@ -73,7 +73,7 @@ public class RankPanel extends JPanel {
 	     initTable();
 	     
 	     this.selectAllBT = new JButton("全选");
-	     this.selectAllBT.setBounds(100,250,LBW,LBH);
+	     this.selectAllBT.setBounds(100,330,LBW,LBH);
 	     this.selectAllBT.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {

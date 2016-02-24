@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public static int Width = 450;
-	public static int Height = 350;
+	public static int Height = 440;
 
 	private Font font;
 	private JPanel showPanel;
