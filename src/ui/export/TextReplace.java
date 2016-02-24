@@ -57,6 +57,12 @@ public class TextReplace {
 			file.mkdir();
 		}
 		
+		for(int i=0;i<ranks.size();i++){
+			String rank = ranks.get(i);
+			rank = "第 "+rank+" 名";
+			ranks.set(i, rank);
+		}
+		
 		for(int i=0;i<names.size();i++){
 			MyDoc myDoc = POIUtility.openDoc("获奖证书模板.docx");
 			HashMap<String, String> map = new HashMap<>();
@@ -64,9 +70,9 @@ public class TextReplace {
 			map.put(replace.level, levels.get(i));
 			map.put(replace.rank, ranks.get(i));
 			
-			for(String key:map.keySet()){
-				System.out.println(key+":"+map.get(key));
-			}
+//			for(String key:map.keySet()){
+//				System.out.println(key+":"+map.get(key));
+//			}
 			
 			replace.replace(myDoc,map);
 			POIUtility.writeDoc(myDoc, replace.dirName+"/"+names.get(i)+"获奖证书.docx");
@@ -78,7 +84,7 @@ public class TextReplace {
 	public static void main(String[] args) {
 		List<String> names = Arrays.asList("李雷","韩梅梅","小明");
 		List<String> levels = Arrays.asList("男甲45Kg","男甲45Kg","男甲45Kg");
-		List<String> ranks = Arrays.asList("第 1 名","第 2 名","第 3 名");
+		List<String> ranks = Arrays.asList("1","2","3");
 		TextReplace.exportWord(names, levels, ranks);
 	}
 }
