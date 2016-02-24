@@ -21,7 +21,7 @@ public class TextReplace {
 	
 	private TextReplace(){}
 	
-	public void replace(MyDoc myDoc,HashMap<String,String> map){
+	private void replace(MyDoc myDoc,HashMap<String,String> map){
 		List<XWPFParagraph> paragraphList = myDoc.getParagraphs();
 		
 		for(XWPFParagraph paragraph:paragraphList) {
@@ -81,10 +81,19 @@ public class TextReplace {
 	}
 	
 	
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		List<String> names = Arrays.asList("李雷","韩梅梅","小明");
 		List<String> levels = Arrays.asList("男甲45Kg","男甲45Kg","男甲45Kg");
 		List<String> ranks = Arrays.asList("1","2","3");
 		TextReplace.exportWord(names, levels, ranks);
 	}
+=======
+//	public static void main(String[] args) {
+//		List<String> names = Arrays.asList("李雷","韩梅梅","小明");
+//		List<String> levels = Arrays.asList("男甲45Kg","男甲45Kg","男甲45Kg");
+//		List<String> ranks = Arrays.asList("第 1 名","第 2 名","第 3 名");
+//		TextReplace.exportWord(names, levels, ranks);
+//	}
+>>>>>>> origin/master
 }
