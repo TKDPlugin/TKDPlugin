@@ -35,7 +35,7 @@ public class RankPanel extends JPanel {
 	private static int LBW=60;
 	private static int LBH=30;
 	private static int showW=360;
-	private static int showH=210;
+	private static int showH=170;
 	
 	private BlController controller;
 	//进行中的级别列表
@@ -46,9 +46,12 @@ public class RankPanel extends JPanel {
 	private JComboBox<String> levelBox ;
 	private JLabel levelLB;
 	private JTable table ;
+	private MyTableRender  myTableRender;
 	private MyTableModel model;
     private JScrollPane Spane;
     private JButton exportBT;
+    private JButton selectAllBT;
+    private JButton printBT;
     
 	public RankPanel(BlController controller){
 	
@@ -62,16 +65,28 @@ public class RankPanel extends JPanel {
 	
    public void initComponent(){
 	     
-	     this.font = new Font("Microsoft YaHei UI", Font.PLAIN, 16);
+	     this.font = new Font("Microsoft YaHei UI", Font.PLAIN, 15);
 	     this.levelLB = new JLabel("级别");
 	     levelLB.setFont(font);
 	     levelLB.setBounds(120,10,LBW,LBH);
 	     initComboBox();
 	     initTable();
+	     
+	     this.selectAllBT = new JButton("全选");
+	     this.selectAllBT.setBounds(100,250,LBW,LBH);
+	     this.selectAllBT.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					myTableRender.setAllSelected();
+					repaint();
+				}
+		    	 
+		     });
+	     
+	     
 	     this.exportBT = new JButton("导出");
-	     this.exportBT.setBounds(300,250,LBW,LBH);
+	     this.exportBT.setBounds(selectAllBT.getX()+LBW+20,selectAllBT.getY(),LBW,LBH);
 	     this.exportBT.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -81,9 +96,20 @@ public class RankPanel extends JPanel {
 			}
 	    	 
 	     });
+	     
+	     this.printBT = new JButton("打印");
+	     this.printBT.setBounds(exportBT.getX()+LBW+20,selectAllBT.getY(),LBW,LBH);
+	     this.printBT.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			
+				 
+			}
+	    	 
+	     });
 
 	     this.add(levelLB);   this.add(levelBox);
-	     this.add(Spane);     this.add(exportBT);
+	     this.add(Spane);     this.add(exportBT);  this.add(selectAllBT);  this.add(printBT);
    }
    
    private void initComboBox(){
@@ -109,13 +135,12 @@ public class RankPanel extends JPanel {
    
    //默认显示级别列表中第一级别的排名
    private void initTable(){
+	   this.myTableRender = new MyTableRender();
 	   this.model = new MyTableModel(levelList.get(0).getAltheteList());
 	   this.table  = new JTable(model);
 	
 	   Spane = new JScrollPane(table);
-	   
-	   
-	   MyTableHandler.decorateTableAndSpane(table, Spane);
+	   MyTableHandler.decorateTableAndSpane(table, myTableRender,Spane);
 	   Spane.setBounds(45,50,showW,showH);
    }
    

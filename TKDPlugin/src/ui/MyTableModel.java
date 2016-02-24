@@ -69,7 +69,7 @@ public class MyTableModel extends AbstractTableModel {
 	
 	@Override
 	public boolean isCellEditable(int row, int column) {
-		//历史付款单不可编辑
+	
 	          	return false;
 	}
 	
@@ -87,7 +87,7 @@ public class MyTableModel extends AbstractTableModel {
 			temp.add( athleteList.get(i).getName());
 			temp.add( athleteList.get(i).getTeam());
 			temp.add(athleteList.get(i).getLevelName());
-			temp.add(new JRadioButton("",false));
+		    temp.add(new JRadioButton("",false));
 			data.add(temp);
 		}
   	    fireTableDataChanged();
